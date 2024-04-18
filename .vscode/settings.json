@@ -1,0 +1,11 @@
+//browser sync (estensione) deve automaticamente aggiornare tutti i contenuti
+//che si trovano sia nella cartella Views di tipo cshtml 
+//e tutti quelli che si trovano in wwwroot
+{
+    "emmet.includeLanguages": { "aspnetcorerazor": "html"},
+    "browserSync.config": {
+        "proxy": "localhost:5000",
+        "port": 5000,
+        "files": ["bin/reload.txt", "Views/**/*.cshtml", "wwwroot/**/*"]
+    }
+}
