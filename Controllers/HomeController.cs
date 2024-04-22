@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+//using AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -16,7 +17,8 @@ namespace MyCourse.Controllers
 
         public IActionResult Index()
         {
-            return Content("Sono nella Index dell'Homepage");
+            //return Content("Sono nella Index dell'Homepage");
+            return View();
         }
 
         public IActionResult Error()
