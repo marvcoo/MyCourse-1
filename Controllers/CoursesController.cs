@@ -26,12 +26,11 @@ namespace MyCourse.Controllers
         }
 
         //metodo che deve recuperare le info dello specifico corso avente un certo id
-        public IActionResult Detail(string id)
+        public IActionResult Detail(int id)
         {
-            if (id == "5")
-            return View("Prova");
-            else 
-            return View();
+            var courseService = new CourseService(); //invocazione del servizio
+            CourseDetailViewModel viewModel = courseService.GetCourse(id);
+            return View(viewModel);
             //return Content($"Sono Detail, ho ricevuto l'id {id}");
             //return Redirect("https://www.amazon.it/");
         }
