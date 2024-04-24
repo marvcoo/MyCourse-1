@@ -14,6 +14,10 @@ namespace MyCourse.Models.ViewModels
         public TimeSpan TotalCourseDuration
         {
             get => TimeSpan.FromSeconds(Lezioni?.Sum(l => l.Durata.TotalSeconds) ?? 0);
+            /*l'operatore null-coalescing ??
+            significa che se quello che c'è a sinistra è Null, allora restituisce 0
+            altrimenti restituisce quello che c'è a sinistra (cioè la somma)
+            */
         }
     }
 }

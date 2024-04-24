@@ -18,6 +18,7 @@ namespace MyCourse.Controllers
         public IActionResult Index()
         {
             //return Content("Sono nella Index dell'Homepage");
+            ViewData["Title"] = "Home";
             return View();
         }
 

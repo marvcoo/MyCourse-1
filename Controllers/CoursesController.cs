@@ -22,6 +22,7 @@ namespace MyCourse.Controllers
         {
             var courseService = new CourseService(); //invocazione del servizio
             List<CourseViewModel> courses = courseService.GetCourses();
+            ViewData["Title"] = "Elenco dei corsi";
             return View(courses); //ritorna la lista di tutti i corsi
         }
 
@@ -30,6 +31,7 @@ namespace MyCourse.Controllers
         {
             var courseService = new CourseService(); //invocazione del servizio
             CourseDetailViewModel viewModel = courseService.GetCourse(id);
+            ViewData["Title"] = viewModel.Titolo;
             return View(viewModel);
             //return Content($"Sono Detail, ho ricevuto l'id {id}");
             //return Redirect("https://www.amazon.it/");
