@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using MyCourse.Models.Services.Application;
 
 namespace MyCourse
 {
@@ -21,6 +22,10 @@ namespace MyCourse
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //registrazione del servizio di dependency a injection:
+            services.AddTransient<ICourseService, CourseService>(); 
+            //quando un controller ha nel suo costruttore un oggetto di tipo ICourseService, crea un oggetto di tipo CourseService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,5 +52,3 @@ namespace MyCourse
         } 
     }
 }
-
-

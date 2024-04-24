@@ -12,16 +12,23 @@ namespace MyCourse.Controllers
 {
     public class CoursesController : Controller
     {
-        public CoursesController()
+        private readonly ICourseService CourseService; //oggetto che deve essere automaticamente iniettato da asp.netcore 
+        //quando viene invocato questo controller
+        //è una interfaccia per realizzare il disaccoppiamento debole (dependency injection)
+        public CoursesController(ICourseService courseService)
         {
+            //verrà iniettato automaticamente un oggetto di una classe che implementa l'interfaccia ICourseService
+            this.CourseService = courseService;
         }
 
 
         //metodo per recuperare la lista di tutti i corsi
         public IActionResult Index() 
         {
-            var courseService = new CourseService(); //invocazione del servizio
-            List<CourseViewModel> courses = courseService.GetCourses();
+            //var courseService = new CourseService(); //invocazione del servizio
+            //la creazione dell'oggetto (servizio) non serve più perchè tramite l'injection, asp.net core lo fa in automatico
+            
+            List<CourseViewModel> courses = CourseService.GetCourses();
             ViewData["Title"] = "Elenco dei corsi";
             return View(courses); //ritorna la lista di tutti i corsi
         }
@@ -29,8 +36,10 @@ namespace MyCourse.Controllers
         //metodo che deve recuperare le info dello specifico corso avente un certo id
         public IActionResult Detail(int id)
         {
-            var courseService = new CourseService(); //invocazione del servizio
-            CourseDetailViewModel viewModel = courseService.GetCourse(id);
+            //var courseService = new CourseService(); //invocazione del servizio
+            //la creazione non serve più perchè tramite l'injection, asp.net core lo fa in automatico
+            
+            CourseDetailViewModel viewModel = CourseService.GetCourse(id);
             ViewData["Title"] = viewModel.Titolo;
             return View(viewModel);
             //return Content($"Sono Detail, ho ricevuto l'id {id}");

@@ -8,7 +8,7 @@ using MyCourse.Models.Enums;
 
 namespace MyCourse.Models.Services.Application
 {
-    public class CourseService
+    public class CourseService : ICourseService
     {
         //metodo che recupera la lista di tutti i corsi
         public List<CourseViewModel> GetCourses()
