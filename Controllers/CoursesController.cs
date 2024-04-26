@@ -50,5 +50,22 @@ namespace MyCourse.Controllers
         {
             return View("Error!");
         }
+
+        public IActionResult Ricerca(string cerca)
+        {  
+            if(cerca == "tutti")
+               return RedirectToAction("Index");
+            else if (int.TryParse(cerca, out int corsoId))
+                return RedirectToAction("Detail", new { id = corsoId }); // Reindirizza alla pagina Detail con l'ID del corso
+            /*
+            else if(la ricerca è data da una lista di più corsi){
+                List<CourseViewModel> courses = CourseService.Ricerca(cerca);
+                ViewData["Title"] = "Risultato ricerca";
+                return View(viewModel);
+            }
+            */
+             else
+                return RedirectToAction("Error"); // Reindirizza alla pagina di errore
+        }
     }
 }

@@ -58,5 +58,20 @@ namespace MyCourse.Models.Services.Application
             return course;
         }
 
+        public List<CourseViewModel> Ricerca(string cerca)
+        {
+            var courseList = new List<CourseViewModel>();
+            var course = new CourseViewModel();
+            if(cerca == "tutti")
+            {
+                courseList = GetCourses();
+            }
+            else
+            {
+                course = GetCourse(Convert.ToInt32(cerca)); //dovrei prendere i corsi elencati nella ricerca
+                courseList.Add(course);
+            }
+            return courseList;
+        }
     }
 }
