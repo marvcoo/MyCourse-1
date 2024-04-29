@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
 using MyCourse.Models.Services.Application;
 using MyCourse.Models.ViewModels;
+
+
 
 namespace MyCourse.Controllers
 {
@@ -29,6 +31,7 @@ namespace MyCourse.Controllers
             //la creazione dell'oggetto (servizio) non serve più perchè tramite l'injection, asp.net core lo fa in automatico
             
             List<CourseViewModel> courses = CourseService.GetCourses();
+            
             ViewData["Title"] = "Elenco dei corsi";
             return View(courses); //ritorna la lista di tutti i corsi
         }
@@ -39,13 +42,16 @@ namespace MyCourse.Controllers
             //var courseService = new CourseService(); //invocazione del servizio
             //la creazione non serve più perchè tramite l'injection, asp.net core lo fa in automatico
             
-            CourseDetailViewModel viewModel = CourseService.GetCourse(id);
-            ViewData["Title"] = viewModel.Titolo;
-            return View(viewModel);
+           // CourseDetailViewModel viewModel = CourseService.GetCourse(id);
+            
+            //ViewData["Title"] = viewModel.Titolo;
+           // return View(viewModel);
+           return View();
             //return Content($"Sono Detail, ho ricevuto l'id {id}");
             //return Redirect("https://www.amazon.it/");
         }
 
+<<<<<<< HEAD
         public IActionResult Error()
         {
             return View("Error!");
@@ -67,5 +73,28 @@ namespace MyCourse.Controllers
              else
                 return RedirectToAction("Error"); // Reindirizza alla pagina di errore
         }
+=======
+    public IActionResult Ricerca(string cerca)
+{
+    // Controlla se la stringa di ricerca è vuota
+    if (cerca=="tutti")
+    {
+        // Se la stringa di ricerca è vuota, reindirizza alla pagina principale o mostra un messaggio di errore
+        return RedirectToAction("Index");
+        // Oppure, se vuoi restituire un messaggio di errore:
+        // return Content("Inserisci un termine di ricerca valido.");
+    }
+    else {
+        return RedirectToAction("detail" , new {id = cerca});
+    }
+
+   
+} 
+
+
+
+      
+ 
+>>>>>>> 8e22fd6496c47db7d8aafae37bb74fa5bd897348
     }
 }

@@ -12,7 +12,13 @@ namespace MyCourse.Models.Services.Application
     public interface ICourseService
     {
         List<CourseViewModel> GetCourses();
+<<<<<<< HEAD
         CourseDetailViewModel GetCourse(int id);
         List<CourseViewModel> Ricerca(string cerca);
+=======
+       // CourseDetailViewModel GetCourse(int id);
+        
+
+>>>>>>> 8e22fd6496c47db7d8aafae37bb74fa5bd897348
     }
 }

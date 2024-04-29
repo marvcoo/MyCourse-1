@@ -58,6 +58,7 @@ namespace MyCourse.Models.Services.Application
             return course;
         }
 
+<<<<<<< HEAD
         public List<CourseViewModel> Ricerca(string cerca)
         {
             var courseList = new List<CourseViewModel>();
@@ -73,5 +74,10 @@ namespace MyCourse.Models.Services.Application
             }
             return courseList;
         }
+=======
+
+     
+
+>>>>>>> 8e22fd6496c47db7d8aafae37bb74fa5bd897348
     }
 }

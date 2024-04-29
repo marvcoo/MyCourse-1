@@ -26,12 +26,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" asp-action="Index" asp-controller="Courses" >Corsi</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Prova" asp-controller="Courses" >Corsi</a>
+                    </li>
                 </ul>
+<<<<<<< HEAD
                 
                 <form  method="get" class="d-flex" role="search" asp-action="Ricerca" asp-controller="Courses">
                     <input name="cerca" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+=======
+                <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" name="cerca" id="inputcerca" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" asp-controller="Courses" asp-action="Ricerca" asp-route-id="cerca">Search</button>
+      </form>
+>>>>>>> 8e22fd6496c47db7d8aafae37bb74fa5bd897348
             </div>
    </nav>
 
