@@ -30,9 +30,37 @@ namespace MyCourse.Models.Services.Application
             }
             return courseList;
          }
-      //  CourseDetailViewModel GetCourse(int id)
-      //  {
+       public CourseDetailViewModel GetCourse(int id)
+       {
+           string query = "SELECT Id, Title, Description, ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency FROM Courses WHERE Id=" + id +
+            "; SELECT Id, Title, Description, Duration FROM Lessons WHERE CourseId=" + id;
+            DataSet dataSet= db.Query(query);
+            var courseTable = dataSet.Tables[0];
             
-       // }
+            //dato che la prima query mi ritorna esattamente una riga, controllo se effettivamente 
+            //la tabella contiene una sola riga tramite Rows.Count
+            if (courseTable.Rows.Count != 1) {
+                throw new InvalidOperationException($"Did not return exactly 1 row for Course {id}");
+            }
+            //recupero i dati della prima riga della tabella -> quindi i dati del corso con id recuperato
+            var courseRow = courseTable.Rows[0];
+            //creo l'oggetto ViewModel popolandolo con i dati recuperati da db
+            var courseDetailViewModel = CourseDetailViewModel.FromDataRow(courseRow);
+
+            //recupero i dati della tabella risultato della seconda query
+            var lessonTable = dataSet.Tables[1];
+
+            //per ogni riga (lezione) presente nella tabella crea una lezione (oggetto LessonViewModel)
+            //popolandolo con i dati letti da database
+            foreach(DataRow lessonRow in lessonTable.Rows){
+                LessonViewModel lessonViewModel = LessonViewModel.FromDataRow(lessonRow);
+                //aggiungi la lezione alla lista di lezioni del corso
+                courseDetailViewModel.Lezioni.Add(lessonViewModel);
+            }
+
+            return courseDetailViewModel;
+
+
+        }
     }
 }
