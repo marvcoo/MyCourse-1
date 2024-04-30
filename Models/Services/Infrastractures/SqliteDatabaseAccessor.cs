@@ -24,9 +24,16 @@ namespace MyCourse.Models.Services.Infrastractures
               using(var reader = cmd.ExecuteReader()){ 
                 var dataSet = new DataSet();
                 dataSet.EnforceConstraints=false;
-                var dataTable= new DataTable();
-                dataSet.Tables.Add(dataTable);
-                dataTable.Load(reader); // cosi evitiamo di leggere i data dalla tabella risultante riga per riga(while)
+                do{
+                  var dataTable= new DataTable();
+                  dataSet.Tables.Add(dataTable);
+                  dataTable.Load(reader); 
+                } while (!reader.IsClosed);
+                //var dataTable= new DataTable();
+                //dataSet.Tables.Add(dataTable);
+                //dataTable.Load(reader); 
+                
+                // cosi evitiamo di leggere i data dalla tabella risultante riga per riga(while)
                   //while (reader.Read()){ // il metodo Read legge una riga per volta della tabella restituita
                     //string Titolo= (string)reader["Title"];//recupero il valore del campo Title della tabella Courses 
                   //}
